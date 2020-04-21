@@ -71,25 +71,53 @@ form {
   display: inline-block;
 }
 
-.h2 {
-  font-size: 18px;
+h1 {
+  font-size: 36px;
+  text-align: left;
 }
 
+h2 {
+  font-size: 24px;
+  text-align: left;
+}
+
+.container {
+  width: 100%;
+  margin-left: 0px;
+}
+
+form {
+  width: 100%;
+}
 
 .submit-container {
-  position: absolute;
+  position: relative;
   bottom: 0px;
-  height: 20%;
-  width: 80%;
+  height: 300px;
+  width: 100%;
   text-align: center;
+
+  /* Shadow */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .submit-container button {
+  /* Position */
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  /* Size */
   width: 80%;
   height: 150px;
-  display: inline-block;
+  
+  /* Style */
   font-size: 24px;
   background-color: darkblue;
   color: white;
   border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
