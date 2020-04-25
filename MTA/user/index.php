@@ -1,4 +1,3 @@
-<!doctype html>
 <html class="no-js" lang="en">
     <head>
         <title>MTA Issue Submitter</title>
@@ -47,7 +46,7 @@
             <!-- Issue Type -->
             <h2>Issue Type</h2>
             <select name="issue-type" id="issue-type" class="row">
-                <option value="broken-bench">Broken Bench</option>
+                <option value="broken bench">Broken Bench</option>
                 <option value="electrical">Electrical</option>
                 <option value="other">Other</option>
             </select>
@@ -57,26 +56,7 @@
             <!-- Submit Button -->
             <div class="submit-container row">
                 <button type="button" onclick="addIssue()">SUBMIT ISSUE</button>
-            </div>
-            
+            </div> 
         </form>
-
-<!-- onclick="addUser()" -->
-
-
     </body>
-
 </html>
-
-
-
-
-
-<!-- BIBLIOGRAPHY
-- Image Capture: https://developers.google.com/web/fundamentals/media/capturing-images
-
-
-
-
-
- -->

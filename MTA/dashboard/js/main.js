@@ -1,7 +1,7 @@
 
 function init(){
   console.log("app initialized");
-  var url = "searchuser.php";
+  var url = "search.php";
   callAJAX(url, '', 'buildTable');
 }
 
@@ -53,7 +53,7 @@ function buildTable(response){
   // console.log(response);
 
 
-  var tableHeader = "<th>Owner Name</th><th>Dog Name</th><th>Shots</th>";
+  var tableHeader = "<th>Img Path</th><th>Location</th><th>Issue Type</th><th>Notes</th>";
   var tableRows = "";
   var parsed = JSON.parse(response);
 
@@ -64,15 +64,17 @@ function buildTable(response){
   for (var i = 0; i < parsed.length; i++) {
 
       // Get variables
-      var name = parsed[i].name;
-      var dog = parsed[i].dog;
-      var shots = parsed[i].shots;
+      var imgPath = parsed[i].imagePath;
+      var location = parsed[i].location;
+      var issueType = parsed[i].issueType;
+      var notes = parsed[i].notes;
 
       // Determine Row Color
-      var rowColor = checkForShots(shots);
+      // var rowColor = checkForShots(shots);
 
       // Build table row
-      var tr = "<tr bgcolor='" + rowColor + "'><td>" + name + "</td><td>" + dog + "</td><td>" + shots + "</td></tr>";
+      // var tr = "<tr bgcolor='" + rowColor + "'><td>" + name + "</td><td>" + dog + "</td><td>" + shots + "</td></tr>";
+      var tr = "<tr'><td>" + imgPath + "</td><td>" + location + "</td><td>" + issueType + "</td><td>" + notes + "</td>";
       // console.log("Row is: " + tr);
 
       tableRows += tr;
@@ -102,21 +104,21 @@ function checkForShots($shots) {
   return rowColor;
 }
 
-function addUser(){
-  console.log("add patient");
+// function addUser(){
+//   console.log("add patient");
 
-  // Get Variables from form
-  var name = document.getElementById("newName").value;
-  var dog = document.getElementById("newDog").value;
-  var toy = document.getElementById("newToy").value;
-  var age = document.getElementById("newAge").value;
-  var shots = document.getElementById("newShots").value;
+//   // Get Variables from form
+//   var name = document.getElementById("newName").value;
+//   var dog = document.getElementById("newDog").value;
+//   var toy = document.getElementById("newToy").value;
+//   var age = document.getElementById("newAge").value;
+//   var shots = document.getElementById("newShots").value;
 
-  // Call AJAX
-  callAJAX('addNewPatient.php','name='+name + '&dog=' + dog + '&toy=' + toy + '&age=' + age + '&shots=' + shots,'addUserResponse');
-}
+//   // Call AJAX
+//   callAJAX('addNewPatient.php','name='+name + '&dog=' + dog + '&toy=' + toy + '&age=' + age + '&shots=' + shots,'addUserResponse');
+// }
 
-function addUserResponse(response) {
-  console.log("Add User Response:" + decodeURI(response));
-  init();
-}
+// function addUserResponse(response) {
+//   console.log("Add User Response:" + decodeURI(response));
+//   init();
+// }

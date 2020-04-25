@@ -1,3 +1,25 @@
+function addIssue(){
+    // console.log("add patient");
+
+    // Get Variables from form
+    var location = document.getElementById("location").value;
+    // var pic = document.getElementById("pic").value;
+    var issueType = document.getElementById("issue-type").value;
+
+    // Testing variable grab
+    console.log("Location: " + location);
+    // console.log("Picture: " + pic);
+    console.log("Issue Type: " + issueType);
+    
+    // Call AJAX
+    callAJAX('addIssue.php','location='+location + '&issueType=' + issueType, 'addIssueResponse');
+    // callAJAX('addNewPatient.php','name='+name + '&dog=' + dog + '&toy=' + toy + '&age=' + age + '&shots=' + shots,'addUserResponse');
+}
+
+function addIssueResponse(response) {
+    console.log("Add Issue Response:" + decodeURIComponent(response));
+    // init();
+}
 
 // For Upload Button
 // var inputs = document.querySelectorAll( '.inputfile' );
@@ -50,8 +72,6 @@ function callAJAX(url, params, functionName) {
 
     console.log("callAJAX: url: " + url + ", params: " + params + ", functionName: " + functionName);
 
-    // console.log("callAJAX: url:" + url + ", params: " + params);
-
     var xhttp = new XMLHttpRequest();
 
     // What to do when it gets a response
@@ -72,28 +92,7 @@ function callAJAX(url, params, functionName) {
   
 }
 
-function addIssue(){
-    // console.log("add patient");
 
-    // Get Variables from form
-    var location = document.getElementById("location").value;
-    // var pic = document.getElementById("pic").value;
-    var issueType = document.getElementById("issue-type").value;
-
-    // Testing variable grab
-    console.log("Location: " + location);
-    // console.log("Picture: " + pic);
-    console.log("Issue Type: " + issueType);
-    
-    // Call AJAX
-    callAJAX('/php/addIssue.php','location='+location + '&issueType=' + issueType, 'addIssueResponse');
-    // callAJAX('addNewPatient.php','name='+name + '&dog=' + dog + '&toy=' + toy + '&age=' + age + '&shots=' + shots,'addUserResponse');
-}
-
-function addIssueResponse(response) {
-    console.log("Add Issue Response:" + decodeURI(response));
-    // init();
-}
 
 
 
