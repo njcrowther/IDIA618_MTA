@@ -29,7 +29,7 @@
             while($row = $result->fetch_assoc()) {
                 if ($row["password"] == md5($_POST["password"])) {
                     $_SESSION["username"] = $username;
-                    header('Location: index.php');
+                    header('Location: dashboard_page.php');
                     // echo "Session Username is " . $_SESSION["username"];
                 } else {
                     echo "Incorrect";
@@ -50,7 +50,7 @@
 
 <body>
 <h1>Login</h1>
-<form name="login" method="POST" action="login.php">
+<form name="login" method="POST" action="login_page.php">
     Username: <input type="text" name="username"><br>
     Password: <input type="password" name="password"><br>
     <input type="submit" name="submit" value="Submit">

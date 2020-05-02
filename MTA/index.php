@@ -1,14 +1,24 @@
+<!-- Start User Session -->
+<?php
+    session_start();
+    // echo "Session Username is " . $_SESSION["username"];
+    
+    // Show Issue Submission if not logged in. Otherwise redirect to dashboard (see end of file)
+    if(!isset($_SESSION["username"])) {
+
+?>
+
 <html class="no-js" lang="en">
     <head>
         <title>MTA Issue Submitter</title>
-
-        
-
-        <!-- * Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-        <!-- * Bootstrap -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!-- My JS -->
+        <script src="js/main.js" type="text/javascript"></script>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -23,9 +33,20 @@
     
     <body class="container">
         <!-- Navigation -->
-        <div class="row nav">
-            <h1>MTA USER PORTAL</h1>
-        </div>
+    <!-- style="margin:0;" -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+        <a class="navbar-brand" href="#">MTA Issue Submission</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Sign in Button -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"> <a class="nav-link" href="../MTA/dashboard/login_page.php">Sign In</a></li>
+        </ul>
+      </div>
+    </nav>
 
         <form action="">
             <!-- Location -->
@@ -60,3 +81,11 @@
         </form>
     </body>
 </html>
+
+<?php
+
+    } else {
+    //   Redirect to Dashboard
+    header('Location: dashboard_page.php');
+    }
+?>

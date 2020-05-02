@@ -10,10 +10,11 @@ function addIssue(){
     console.log("Location: " + location);
     // console.log("Picture: " + pic);
     console.log("Issue Type: " + issueType);
+
+    var parameterString = 'location='+location + '&issueType=' + issueType;
     
     // Call AJAX
-    callAJAX('addIssue.php','location='+location + '&issueType=' + issueType, 'addIssueResponse');
-    // callAJAX('addNewPatient.php','name='+name + '&dog=' + dog + '&toy=' + toy + '&age=' + age + '&shots=' + shots,'addUserResponse');
+    callAJAX('addIssue.php', parameterString , 'addIssueResponse');
 }
 
 function addIssueResponse(response) {
@@ -91,52 +92,3 @@ function callAJAX(url, params, functionName) {
     xhttp.send(params); // send request parameters.
   
 }
-
-
-
-
-
-
-
-
-  
-function buildTable(response){
-    console.log("Build Table");
-    console.log("RESPONSE");
-    // console.log(response);
-
-
-    var tableHeader = "<th>Owner Name</th><th>Dog Name</th><th>Shots</th>";
-    var tableRows = "";
-    var parsed = JSON.parse(response);
-
-    //clear table
-    document.getElementById("tableData").innerHTML = tableHeader;
-
-    // ADD JSON DATA TO THE TABLE AS ROWS.
-    for (var i = 0; i < parsed.length; i++) {
-
-        // Get variables
-        var name = parsed[i].name;
-        var dog = parsed[i].dog;
-        var shots = parsed[i].shots;
-
-        // Determine Row Color
-        var rowColor = checkForShots(shots);
-
-        // Build table row
-        var tr = "<tr bgcolor='" + rowColor + "'><td>" + name + "</td><td>" + dog + "</td><td>" + shots + "</td></tr>";
-        // console.log("Row is: " + tr);
-
-        tableRows += tr;
-    }
-
-    // console.log(tableData);
-
-    document.getElementById("tableData").innerHTML = tableHeader + tableRows;
-  
-  
-}
-  
-
-  

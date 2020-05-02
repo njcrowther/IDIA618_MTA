@@ -35,7 +35,7 @@
     } else {
         $sql = "INSERT INTO `users` (`username`,`email`,`password`) VALUES ('$username','$email','$password');";
         $result = $conn->query($sql);
-        echo "New User Created!";
+        header('Location: dashboard_page.php');
     }
 
 
