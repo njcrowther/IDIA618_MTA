@@ -49,7 +49,7 @@ function callAJAX(url, params, functionName) {
 
 function buildTable(response){
   console.log("Build Table");
-  console.log("RESPONSE");
+  // console.log("RESPONSE");
   // console.log(response);
 
 
@@ -73,9 +73,8 @@ function buildTable(response){
       // var rowColor = checkForShots(shots);
 
       // Build table row
-      // var tr = "<tr bgcolor='" + rowColor + "'><td>" + name + "</td><td>" + dog + "</td><td>" + shots + "</td></tr>";
-      var tr = "<tr'><td>" + imgPath + "</td><td>" + location + "</td><td>" + issueType + "</td><td>" + notes + "</td>";
-      // console.log("Row is: " + tr);
+      var tr = "<tr><td>" + imgPath + "</td><td>" + location + "</td><td>" + issueType + "</td><td>" + notes + "</td>";
+      console.log("Row is: " + tr);
 
       tableRows += tr;
   }

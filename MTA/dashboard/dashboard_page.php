@@ -1,6 +1,6 @@
 <?php
     session_start();
-    echo "Session Username is " . $_SESSION["username"];
+    // echo "Session Username is " . $_SESSION["username"];
     // If Logged In
     if(isset($_SESSION["username"])) {
 
@@ -61,7 +61,7 @@
         <div class="tab-content">
           <!-- Search.php -->
           <div class="tab-pane active container" id="search">
-            <?php include 'search.php';?>
+            <?php include '../newIssue_form.php';?>
           </div>
 
           <!-- newPatient.php -->
@@ -78,7 +78,7 @@
 
       <!-- Right Bar – Search Results -->
       <div class="col-8">
-        <table id="tableData">
+        <table id="tableData" class="table">
           <th>Image Path</th>
           <th>Location</th>
           <th>Issue Type</th>

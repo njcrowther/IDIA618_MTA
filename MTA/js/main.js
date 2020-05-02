@@ -22,6 +22,39 @@ function addIssueResponse(response) {
     // init();
 }
 
+//generic AJAX call
+function callAJAX(url, params, functionName) {
+
+    console.log("callAJAX: url: " + url + ", params: " + params + ", functionName: " + functionName);
+
+    var xhttp = new XMLHttpRequest();
+
+    // What to do when it gets a response
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        //do something...call the function?
+        // console.log(xhttp.responseText);
+        eval(functionName+"('" + xhttp.responseText + "')"); //must send back urlencoded
+        }
+    };
+  
+    // How to start the request
+    xhttp.open("POST", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // xhttp.setRequestHeader("Content-length", params.length);
+    // xhttp.setRequestHeader("Connection", "close");
+    xhttp.send(params); // send request parameters.
+  
+}
+
+
+
+
+
+
+
+
+
 // For Upload Button
 // var inputs = document.querySelectorAll( '.inputfile' );
  
@@ -68,27 +101,3 @@ function addIssueResponse(response) {
 //     // How to get data from form, then make it into param string
 // }
   
-//generic AJAX call
-function callAJAX(url, params, functionName) {
-
-    console.log("callAJAX: url: " + url + ", params: " + params + ", functionName: " + functionName);
-
-    var xhttp = new XMLHttpRequest();
-
-    // What to do when it gets a response
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-        //do something...call the function?
-        // console.log(xhttp.responseText);
-        eval(functionName+"('" + xhttp.responseText + "')"); //must send back urlencoded
-        }
-    };
-  
-    // How to start the request
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // xhttp.setRequestHeader("Content-length", params.length);
-    // xhttp.setRequestHeader("Connection", "close");
-    xhttp.send(params); // send request parameters.
-  
-}
