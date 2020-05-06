@@ -1,3 +1,25 @@
+// THESE FUNCTIONS FOR FRONTEND INTERACTION
+function showOther() {
+    var selectValue = document.getElementById("issue-type").value;
+
+    // console.log("Select Changed! Value is: " + selectValue);
+    
+    if (selectValue === "other") {
+        // console.log("We're gonna change it to block!");
+        document.getElementById("notes-label").style.display = "block";
+        document.getElementById("notes").style.display = "block";
+    } else {
+        // console.log("We're gonna change it to none!");
+        document.getElementById("notes-label").style.display = "none";
+        document.getElementById("notes").style.display = "none";
+    }
+}
+
+
+
+
+
+// THESE FUNCTIONS FOR ADDING ISSUES TO DATABASE
 function addIssue(){
     // console.log("add patient");
 

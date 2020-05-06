@@ -6,6 +6,9 @@
   $location = $_POST['location'];
   $issueType = $_POST['issueType'];
   $notes = "Some notes about the issue";
+
+  // $t=time();
+  // $timestamp = date("Y-m-d",$t)s
   
   // Build Query
   $sqlAdd = "INSERT INTO issues (imagePath,location,issueType,notes) VALUES ('$imagePath', '$location', '$issueType', '$notes');";

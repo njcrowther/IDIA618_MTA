@@ -23,9 +23,9 @@
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="css/main.css">
 
-        <!-- JS -->
-        <script src="js/main.js"></script>
-        <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+        <!-- JS
+        <script src="js/main.js"></script> -->
+        <!-- <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script> -->
 
         
         
@@ -53,6 +53,8 @@
     </body>
 </html>
 
+         <!-- JS -->
+         <script src="js/main.js"></script>
 <?php
 
     } else {

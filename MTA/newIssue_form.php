@@ -11,18 +11,24 @@
     </select>
 
     <!-- Upload Image -->
-    <!-- <div class='row'>
-        <input type='file' name='file' id='pic' />
-        <label for='file' class='btn-1'>Upload a Picture!</label>
-    </div> -->
+    <!--
+    <input class='row' type='file' name='file' id='pic' />
+    <label class='row' for='file' class='btn-1'>Upload a Picture!</label>
+    -->
     
     <!-- Issue Type -->
-    <h2>Issue Type</h2>
-    <select name='issue-type' id='issue-type' class='row'>
+
+    <h2 class='row'>Issue Type</h2>
+    <select name='issue-type' id='issue-type' class='row' onchange='showOther()'>
         <option value='broken bench'>Broken Bench</option>
         <option value='electrical'>Electrical</option>
         <option value='other'>Other</option>
     </select>
+
+    <!-- Other Issue Description -->
+
+    <h2 class='row' id='notes-label' style='display:none;'>Specify 'Other'</h2>
+    <input class='row' type='text' name='notes' id='notes' style='display:none;'/>
 
 
 

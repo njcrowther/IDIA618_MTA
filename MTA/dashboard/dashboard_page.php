@@ -10,7 +10,8 @@
   <title>MTA Issue Tracker Dashboard</title>
 
   <!-- My JS -->
-  <script src="js/main.js" type="text/javascript"></script>
+  <script src="js/dashboard.js" type="text/javascript"></script>
+  <script src="../js/main.js" type="text/javascript"></script>
    <!-- jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -52,9 +53,6 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#newPatient">New Patient</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#bibliography">Bibliography</a>
-          </li>
         </ul>
 
         <!-- Tab Content -->
@@ -69,10 +67,6 @@
             <?php include 'newpatient.php';?>
           </div>
 
-          <!-- Bibliography -->
-          <div class="tab-pane container" id="bibliography">
-            <?php include 'bibliography.php';?>
-          </div>
         </div>
       </div>
 

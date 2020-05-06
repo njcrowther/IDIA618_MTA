@@ -1,3 +1,11 @@
+// THESE FUNCTIONS FOR FRONTEND INTERACTION
+function completeTask(id) {
+  // var completed = document.getElementById("completeBox").value;
+
+  console.log("ID is: " + id);
+  callAJAX('deleteTask.php', 'id='+id, 'deleteTaskResponse');
+
+}
 
 function init(){
   console.log("app initialized");
@@ -48,12 +56,12 @@ function callAJAX(url, params, functionName) {
 }
 
 function buildTable(response){
-  console.log("Build Table");
+  // console.log("Build Table");
   // console.log("RESPONSE");
   // console.log(response);
 
 
-  var tableHeader = "<th>Img Path</th><th>Location</th><th>Issue Type</th><th>Notes</th>";
+  var tableHeader = "<th>TimeStamp</th><th>Priority</th><th>Img Path</th><th>Location</th><th>Issue Type</th><th>Notes</th><th>Complete</th>";
   var tableRows = "";
   var parsed = JSON.parse(response);
 
@@ -64,17 +72,29 @@ function buildTable(response){
   for (var i = 0; i < parsed.length; i++) {
 
       // Get variables
+      var id = parsed[i].id;
       var imgPath = parsed[i].imagePath;
       var location = parsed[i].location;
       var issueType = parsed[i].issueType;
       var notes = parsed[i].notes;
+      var ts = parsed[i].timestamp;
+
+
 
       // Determine Row Color
-      // var rowColor = checkForShots(shots);
+      var rowColor = checkPriority(issueType);
+
+      if (rowColor === "red") {
+        priority = "High";
+      } else if (rowColor === "yellow") {
+        priority = "Medium";
+      } else {
+        priority = "Low";
+      }
 
       // Build table row
-      var tr = "<tr><td>" + imgPath + "</td><td>" + location + "</td><td>" + issueType + "</td><td>" + notes + "</td>";
-      console.log("Row is: " + tr);
+      var tr = "<tr id='" + id + "'><td>" + ts + "</td><td style='background-color:" + rowColor + "'>" + priority + "</td><td>" + imgPath + "</td><td>" + location + "</td><td>" + issueType + "</td><td>" + notes + "</td><td><input type='checkbox' onchange='completeTask(" + id + ")' id='completeBox'>";
+      // console.log("Row is: " + tr);
 
       tableRows += tr;
   }
@@ -87,22 +107,28 @@ function buildTable(response){
 }
 
 function searchResults(response){
-    console.log("Search Results");
-    console.log(response);
+    // console.log("Search Results");
+    // console.log(response);
 
-    buildTable(response)
+    buildTable(response);
 }
 
-function checkForShots($shots) {
-  if ($shots == 'No' || $shots == 'no') {
-    var rowColor = 'red';
+function checkPriority(issueType) {
+  if (issueType === "electrical") {
+    rowColor = "red";
+  } else if (issueType === "broken bench") {
+    rowColor = "orange";
   } else {
-    var rowColor = 'white';
+    rowColor = "yellow";
   }
 
   return rowColor;
 }
 
+function deleteTaskResponse(response) {
+  console.log(response);
+  init();
+}
 // function addUser(){
 //   console.log("add patient");
 
