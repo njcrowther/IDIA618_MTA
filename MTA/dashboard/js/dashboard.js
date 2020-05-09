@@ -10,30 +10,15 @@ function completeTask(id) {
 function init(){
   console.log("app initialized");
   var url = "search.php";
-  callAJAX(url, '', 'buildTable');
-}
-
-function search(){
-  console.log("search user");
-  var url = "searchuser.php";
-
-  // Get Variables from Form
-  var name = document.getElementById("name").value;
-  var dog = document.getElementById("dog").value;
-
-  // Send variables
-  callAJAX('searchuser.php','search=true&name='+name + '&dog=' + dog,'buildTable');
-
-  // callAJAX('searchuser.php','search=true','buildTable');
-  // How to get data from form, then make it into param string
+  dashCallAJAX(url, 'order=timestamp', 'buildTable');
 }
 
 //generic AJAX call
-function callAJAX(url, params, functionName) {
+function dashCallAJAX(url, params, functionName) {
 
-    console.log("callAJAX: url: " + url + ", params: " + params + ", functionName: " + functionName);
+    console.log("dashCallAJAX: url: " + url + ", params: " + params + ", functionName: " + functionName);
 
-  // console.log("callAJAX: url:" + url + ", params: " + params);
+  // console.log("dashCallAJAX: url:" + url + ", params: " + params);
 
   var xhttp = new XMLHttpRequest();
 
@@ -61,7 +46,7 @@ function buildTable(response){
   // console.log(response);
 
 
-  var tableHeader = "<th>TimeStamp</th><th>Priority</th><th>Img Path</th><th>Location</th><th>Issue Type</th><th>Notes</th><th>Complete</th>";
+  var tableHeader = "<th>TimeStamp</th><th>Priority</th><th>Img Path</th><th>Location</th><th>Issue Type</th><th>Notes</th><th>Update Issue</th><th>Complete</th>";
   var tableRows = "";
   var parsed = JSON.parse(response);
 
@@ -93,9 +78,11 @@ function buildTable(response){
       }
 
       // Build table row
-      var tr = "<tr id='" + id + "'><td>" + ts + "</td><td style='background-color:" + rowColor + "'>" + priority + "</td><td>" + imgPath + "</td><td>" + location + "</td><td>" + issueType + "</td><td>" + notes + "</td><td><input type='checkbox' onchange='completeTask(" + id + ")' id='completeBox'>";
+      var tr = "<tr id='" + id + "'><td>" + ts + "</td><td style='background-color:" + rowColor + "'>" + priority + "</td><td>" + imgPath + "</td><td>" + location + "</td><td>" + issueType + "</td><td>" + notes + "</td><td><a onclick='updateIssueSearch(" + id + ")' class='btn btn-default btn-rounded'>Update Issue</a></td><td><input type='checkbox' onchange='completeTask(" + id + ")' id='completeBox'>";
       // console.log("Row is: " + tr);
-
+      // updateIssue.php?id=" + id + "
+      // data-target='#updateModal'
+      // data-toggle='modal'
       tableRows += tr;
   }
 
@@ -129,6 +116,46 @@ function deleteTaskResponse(response) {
   console.log(response);
   init();
 }
+
+function sortChange(){
+  var sort = document.querySelectorAll("input[name=filter]:checked")[0].value;
+  console.log("IT'S ALIVE: " + sort);
+
+  var order = "";
+
+  if (sort === "time"){
+    order = "timestamp";
+  } else if (sort === "location") {
+    order = "location";
+  } else if (sort === "issue-type") {
+    order = "issueType";
+  }
+
+  // Send variables
+  dashCallAJAX('search.php','order=' + order,'buildTable');
+}
+
+function updateIssueSearch(id) {
+  // console.log("We're going to update issue #" + id);
+  dashCallAJAX('updateIssue.php', 'id=' + id, 'updateIssueResponse');
+}
+
+function updateIssueResponse(response) {
+  var parsed = JSON.parse(response);
+  var notes = parsed[0].notes;
+  var rowid = parsed[0].id;
+
+  console.log("Got an Updated Response!" + notes);
+
+  $("#updateModal").modal("toggle");
+  document.getElementById('modal-input-notes').value = notes;
+  document.getElementById('modal-input-row-id').value = rowid;
+}
+
+function updateIssue() {
+
+}
+
 // function addUser(){
 //   console.log("add patient");
 
@@ -140,7 +167,7 @@ function deleteTaskResponse(response) {
 //   var shots = document.getElementById("newShots").value;
 
 //   // Call AJAX
-//   callAJAX('addNewPatient.php','name='+name + '&dog=' + dog + '&toy=' + toy + '&age=' + age + '&shots=' + shots,'addUserResponse');
+//   dashCallAJAX('addNewPatient.php','name='+name + '&dog=' + dog + '&toy=' + toy + '&age=' + age + '&shots=' + shots,'addUserResponse');
 // }
 
 // function addUserResponse(response) {

@@ -27,21 +27,30 @@ function addIssue(){
     var location = document.getElementById("location").value;
     // var pic = document.getElementById("pic").value;
     var issueType = document.getElementById("issue-type").value;
+    var notes = document.getElementById("notes").value;
 
     // Testing variable grab
     console.log("Location: " + location);
     // console.log("Picture: " + pic);
     console.log("Issue Type: " + issueType);
 
-    var parameterString = 'location='+location + '&issueType=' + issueType;
+    var parameterString = 'location='+location + '&issueType=' + issueType + '&notes=' + notes;
     
+    // if header = dashboard page use different url
+    if (document.title === "MTA Issue Submitter") {
+        var url = 'addIssue.php';
+    } else if (document.title === "MTA Issue Tracker Dashboard") {
+        var url = '../addIssue.php';
+    }
+
+
     // Call AJAX
-    callAJAX('addIssue.php', parameterString , 'addIssueResponse');
+    callAJAX(url, parameterString , 'addIssueResponse');
 }
 
 function addIssueResponse(response) {
     console.log("Add Issue Response:" + decodeURIComponent(response));
-    // init();
+    location.reload();
 }
 
 //generic AJAX call

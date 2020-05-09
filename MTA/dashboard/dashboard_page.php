@@ -12,13 +12,16 @@
   <!-- My JS -->
   <script src="js/dashboard.js" type="text/javascript"></script>
   <script src="../js/main.js" type="text/javascript"></script>
-   <!-- jQuery -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
  
+   <!-- CSS -->
+   <link rel="stylesheet" type="text/css" href="../css/main.css">
 
 </head>
 
@@ -48,23 +51,23 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#search">Search</a>
+            <a class="nav-link active" data-toggle="tab" href="#filter-table">Filter</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#newPatient">New Patient</a>
+            <a class="nav-link" data-toggle="tab" href="#new-issue">New Issue</a>
           </li>
         </ul>
 
         <!-- Tab Content -->
         <div class="tab-content">
           <!-- Search.php -->
-          <div class="tab-pane active container" id="search">
-            <?php include '../newIssue_form.php';?>
+          <div class="tab-pane active container" id="filter-table">
+            <?php include 'filter.php';?>
           </div>
 
           <!-- newPatient.php -->
-          <div class="tab-pane container" id="newPatient">
-            <?php include 'newpatient.php';?>
+          <div class="tab-pane container" id="new-issue">
+            <?php include '../newIssue_form.php';?>
           </div>
 
         </div>
@@ -78,6 +81,38 @@
           <th>Issue Type</th>
           <th>Notes</th>
         </table>
+      </div>
+
+      <!-- MODAL -->
+      <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-warning" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header text-center">
+              <h4 class="modal-title white-text w-100 font-weight-bold py-2">Update Issue</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <form action="updateIssue_process.php" method="post" class="modal-body">
+              <!-- Body -->
+              <div class="modal-body">
+                <div class="md-form mb-5">
+                  <input name="row-id" type="hidden" id="modal-input-row-id">
+                  <input name="notes" type="text" id="modal-input-notes" class="form-control validate">
+                  <label data-error="wrong" data-success="right" for="form3">Notes</label>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="modal-footer justify-content-center">
+                <input type="submit" value="Save Changes" class="btn btn-outline-warning waves-effect">
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   

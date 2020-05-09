@@ -5,7 +5,7 @@
   $imagePath = "/test/image/path";
   $location = $_POST['location'];
   $issueType = $_POST['issueType'];
-  $notes = "Some notes about the issue";
+  $notes = $_POST['notes'];
 
   // $t=time();
   // $timestamp = date("Y-m-d",$t)s
